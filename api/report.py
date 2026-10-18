@@ -708,7 +708,7 @@ async def _generate_strategic_analysis(
             system=_STRATEGIC_PROMPT,
             messages=[{"role": "user", "content": user_prompt}],
         )
-        return message.content[0].text.strip()
+        return "".join(block.text for block in message.content if block.type == "text").strip()
 
     except Exception:
         logger.exception("[REPORT] Sonnet analysis failed")
